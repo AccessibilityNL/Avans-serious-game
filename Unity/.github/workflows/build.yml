@@ -1,0 +1,56 @@
+name: Unity build & GitHub Pages deployment
+
+on:
+  push:
+    branches: [ master ]
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+    
+      # Cache
+      - uses: actions/cache@v1.1.0
+        with:
+          path: Library
+          key: Library
+
+      # Build
+      - name: Build project
+        uses: webbertakken/unity-builder@v1.0
+        with:
+          unityVersion: 2019.3.14f1
+          targetPlatform: WebGL 
+
+      # Output 
+      - uses: actions/upload-artifact@v1
+        with:
+          name: WebGL Build
+          path: ./build/WebGL/WebGL/
+          
+      # Deploy to GitHub Pages
+      - name: Copy workflows, README, etc.
+        run: |
+          sudo cp ./CNAME ./build/WebGL/WebGL/CNAME || echo "No CNAME"
+          sudo cp ./README.md ./build/WebGL/WebGL/README.md || echo "No README.md"
+          sudo cp ./LICENSE ./build/WebGL/WebGL/LICENSE || echo "No LICENSE"
+          sudo cp -r ./.github/ ./build/WebGL/WebGL/.github/ || echo "No workflows"
+          
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: ./build/WebGL/WebGL/
+          keep_history: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

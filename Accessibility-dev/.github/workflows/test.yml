@@ -1,0 +1,36 @@
+name: Unity tests
+
+on:
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master, dev ]
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      # Cache
+      - uses: actions/cache@v1.1.0
+        with:
+          path: ./Library
+          key: UnityCache
+          restore-keys: Library
+
+      # Test
+      - name: Run tests
+        id: tests
+        uses: webbertakken/unity-test-runner@v1.6
+        with:
+          unityVersion: 2019.3.14f1
+          testMode: editmode

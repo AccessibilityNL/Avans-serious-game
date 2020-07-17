@@ -1,0 +1,21 @@
+WAIT	4
+SHOW	
+TEXT	Welkom bij deze minigame! De bedoeling van deze minigame is het kunnen ervaren van slechthorendheid.
+TEXT	Voor u liggen een aantal objecten op de tafel, welke wanneer het spel begint u kunt selecteren.
+TEXT	Wanneer de speaker een instructie uitspreekt is het de bedoeling dat u het object aantikt wat overeenkomt met de instructie.
+TEXT	Veel succes!
+HIDE	
+GAME	Clear
+SHOW	
+TEXT	Dat zal waarschijnlijk niet heel lastig geweest zijn? Nu gaan we de audio iets wat vervormen en wordt het iets lastiger om de instructie goed te verstaan. Veel succes!
+HIDE	
+VOLUME	0,5
+GAME	Muffled
+SHOW	
+TEXT	Al een stuk lastiger? Nu gaan we de localisatie van het geluid weghalen en gaat het klinken alsof het van veraf komt. Veel succes!
+HIDE	
+VOLUME	0,25
+GAME	Distorted
+SHOW	
+TEXT	Is het gelukt? Dit was de minigame om ervaring op te doen met slechthorendheid
+HIDE	

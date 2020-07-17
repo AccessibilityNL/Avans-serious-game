@@ -1,0 +1,25 @@
+name: Unity FTP deployment
+
+on:
+  push:
+    branches: [ gh-pages ]
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+          
+      # FTP Deploy
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ftp://xr-solutions.nl/
+          ftp-username: github-accessiblity@xr-solutions.nl
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          

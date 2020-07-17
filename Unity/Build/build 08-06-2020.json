@@ -1,0 +1,16 @@
+{
+"companyName": "10bitgaming",
+"productName": "Accessibility",
+"productVersion": "0.1",
+"dataUrl": "build 08-06-2020.data.unityweb",
+"wasmCodeUrl": "build 08-06-2020.wasm.code.unityweb",
+"wasmFrameworkUrl": "build 08-06-2020.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.3.14f1"
+}
